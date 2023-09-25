@@ -7,29 +7,25 @@ async function getRepository() {
     const response = await fetch(`https://api.github.com/search/repositories?q=${inputValue}`);
     const resData = await response.json();
     clearSearchList();
-    for(let i = 0; i < 5; i++) {
-        // console.log(resData.items[i]);
+    const arrItems = resData.items.slice(0, 5)
+    for(let i = 0; i < arrItems.length; i++) {
         createResponseList([resData.items[i].name,
                             resData.items[i].owner.login,
                             resData.items[i].stargazers_count
                             ])
     }
-    // let { name, owner, stars } = resData;
-    
 };
 function handleTapFunction(event) {
     event.preventDefault();
     console.log(event.target.value)
     inputValue = event.target.value;
     getRepository(inputValue)
-    
 };
 function handleClickOnItem(event) {
-    const selectedElement = event.target.textContent
+    const selectedElement = event
     if(event.target.tagName !== 'LI') return;
-    // const searchListItem = event.target.querySelector(`.${selectedElement}`)
     clearSearchList();
-    createChoiseList()
+    createChoisenList()
     searchInput.value = '';
     console.log(selectedElement)
 }
@@ -47,13 +43,14 @@ function debounce(fn, debounceTime) {
 };
 function createResponseList(data) {
     num ++;
+    const [ name ] = data;
+    // console.log(name, owner, stars)
     const listItem = document.createElement('li');
     listItem.className = `search-form__list-item${num}`;
-    listItem.textContent = data;
-    // listItem.textContent = `NAME: ${name} \n OWNER: ${owner}\n STARS: ${stars}`;
+    listItem.textContent = name;
     searchList.appendChild(listItem);
 }
-function createChoiseList() {
+function createChoisenList() {
     num ++;
     // const [name, owner, stars] = data;
     const listItem = document.createElement('li');
