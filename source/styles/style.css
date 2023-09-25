@@ -25,10 +25,14 @@ body {
     justify-content: center;
 }
 .search-form__input {
+    padding-left: 15px;
     width: 500px;
     height: 61px;
 }
-.search-form__list> li{
+.search-form__list > li{
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
     list-style: none;
     width: 500px;
     height: 44px;
@@ -43,6 +47,9 @@ body {
     padding-top: 45px;
 }
 .result-form__list > li {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
     list-style: none;
     width: 503px;
     height: 101px;
