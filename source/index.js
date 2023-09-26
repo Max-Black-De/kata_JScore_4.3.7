@@ -18,13 +18,13 @@ function handleTapFunction(event) {
     inputValue = event.target.value;
     getRepository(inputValue)
 };
-function handleClickOnItem(event, data) {
+function handleClickOnItem(event) {
     const selectedElement = event
+    console.log(selectedElement)
     if(event.target.tagName !== 'LI') return;
     clearSearchList();
     createChoisenList()
     searchInput.value = '';
-    console.log(selectedElement)
 }
 function clearSearchList() {
     searchList.innerHTML = '';
@@ -39,23 +39,25 @@ function debounce(fn, debounceTime) {
     } 
 };
 function createResponseList(data) {
-    num ++;
+    // num ++;
     const [ name, owner, stars ] = data;
-    // console.log(name, owner, stars)
+    
     const listItem = document.createElement('li');
-    listItem.className = `search-form__list-item${num}`;
+    listItem.className = `search-form__list-item`;
     listItem.textContent = name;
+    // listItem.target.dataset.name = name;
+    // listItem.target.dataset.name = owner;
     searchList.appendChild(listItem);
+    console.log(listItem.target)
+    // listItem.target.dataset.name = stars;
 }
-function createChoisenList(data = ['alex', 'alexes', 1233]) {
-    num ++;
-    const [name, owner, stars] = data;
+function createChoisenList(event) {
+    console.log(event)
+    // const [name, owner, stars] = event.target.dataset;
     const listItem = document.createElement('li');
-    listItem.className = `result-form__list-item${num}`;
-    listItem.innerHTML = `<p>Name: ${name}</p> \n <p>Owner: ${owner}</p> \n <p>Stars: ${stars}</p>`;
-    // listItem.textContent = 'NAME:\n OWNER:\n STARS';
+    listItem.className = `result-form__list-item`;
+    // listItem.innerHTML = `<p>Name: ${name}</p> \n <p>Owner: ${owner}</p> \n <p>Stars: ${stars}</p>`;
     resultList.appendChild(listItem);
 }
 searchInput.addEventListener('keyup', debounce(handleTapFunction, 1000))
 searchList.addEventListener('click', handleClickOnItem)
-// console.log(inputValue)
