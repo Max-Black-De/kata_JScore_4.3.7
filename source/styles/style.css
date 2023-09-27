@@ -6,6 +6,7 @@
     text-align: left;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 body {
     display: flex;
@@ -56,6 +57,8 @@ body {
 }
 .result-form__list > li {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-left: 15px;
     list-style: none;
     width: 503px;
@@ -66,6 +69,11 @@ body {
     font-size: 24px;
     font-style: normal;
     line-height: normal;
-    flex-direction: column;
-    justify-content: center;
+}
+.results-list-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.close-button {
+    margin-left: -50px;
 }

@@ -46,14 +46,20 @@ function createResponseList(data) {
 }
 function createChoisenList(data) {
     const { name, owner, stars } = data;
-    let counterLi = resultList.childNodes.length
+    let counterLi = resultList.children.length
     if(counterLi < 3) {
         const listItem = document.createElement('li');
         listItem.className = `result-form__list-item`;
         listItem.innerHTML = `<p>Name: ${name}</p>
-            <p>Owner: ${owner}</p>
-            <p>Stars: ${stars}</p>`;
+        <p>Owner: ${owner}</p>
+        <p>Stars: ${stars}</p>`;
+        const closeBtn = document.createElement('input');
+        closeBtn.className = `close-button`;
+        closeBtn.value = `CLOSE`;
+        closeBtn.type = `button`;
         resultList.appendChild(listItem);
+        resultList.parentNode.appendChild(closeBtn);
+        console.log(resultList.parentNode);
     } else {
         const listItem = document.createElement('li');
         listItem.className = `result-form__list-item`;
@@ -63,8 +69,6 @@ function createChoisenList(data) {
         resultList.appendChild(listItem);
         resultList.removeChild(resultList.childNodes[0])
     }
-    console.log(resultList.childNodes.length);
-    console.log(resultList.childNodes[0]);
 }
 searchInput.addEventListener("keyup", debounce(handleTapFunction, 1000));
 searchList.addEventListener("click", function (event) {
