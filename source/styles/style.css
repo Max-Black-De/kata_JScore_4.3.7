@@ -75,5 +75,9 @@ body {
     justify-content: space-between;
 }
 .close-button {
-    margin-left: -50px;
+    cursor: pointer;
+    /* border: none; */
+    outline: none;
+    background: #E27BEB;
+    margin-left: -55px;
 }
