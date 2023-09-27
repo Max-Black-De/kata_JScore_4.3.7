@@ -47,12 +47,20 @@ function createResponseList(data) {
 function createChoisenList(data) {
     const { name, owner, stars } = data;
     let counterLi = resultList.childNodes.length
-    if(counterLi <= 3) {
+    if(counterLi < 3) {
         const listItem = document.createElement('li');
         listItem.className = `result-form__list-item`;
-        listItem.innerHTML = `<p>Name: ${name}</p> \n <p>Owner: ${owner}</p> \n <p>Stars: ${stars}</p>`;
+        listItem.innerHTML = `<p>Name: ${name}</p>
+            <p>Owner: ${owner}</p>
+            <p>Stars: ${stars}</p>`;
         resultList.appendChild(listItem);
     } else {
+        const listItem = document.createElement('li');
+        listItem.className = `result-form__list-item`;
+        listItem.innerHTML = `<p>Name: ${name}</p>
+            <p>Owner: ${owner}</p>
+            <p>Stars: ${stars}</p>`;
+        resultList.appendChild(listItem);
         resultList.removeChild(resultList.childNodes[0])
     }
     console.log(resultList.childNodes.length);
