@@ -1,7 +1,6 @@
 const searchInput = document.querySelector('input');
 const searchList = document.querySelector('.search-form__list');
 const resultList = document.querySelector('.result-form__list');
-// const closeBtn = document.querySelector('.close-button');
 
 async function getRepository(inputValue) {
     const response = await fetch(`https://api.github.com/search/repositories?q=${inputValue}`);
@@ -48,9 +47,7 @@ function createResponseList(data) {
 function createChoisenList(data) {
     const { name, owner, stars } = data;
     let counterLi = resultList.childNodes.length
-    
     if(counterLi < 3) {
-        console.log(counterLi);
         const listItem = document.createElement('li');
         listItem.className = `result-form__list-item`;
         listItem.innerHTML = `<p>Name: ${name}</p>
@@ -86,7 +83,7 @@ function createChoisenList(data) {
                 };
             });
     }
-}
+};
 searchInput.addEventListener("keyup", debounce(handleTapFunction, 1000));
 searchList.addEventListener("click", function (event) {
     searchInput.value = "";
