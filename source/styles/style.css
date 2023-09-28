@@ -81,13 +81,14 @@ body {
     outline: none;
     background: none;
 }
-.result-form__list > li::before, .result-form__list > li::after  {
+.close-button::before, .close-button::after  {
     content: "";
     position: absolute;
-    right: 27px;
+    right: -7px;
+    top: 19px;
     width: 55px;
     height: 4px;
     background: #FF0000;
 }
-.result-form__list > li::before {transform: rotate(45deg)}
-.result-form__list > li::after {transform: rotate(-45deg)}
+.close-button::before {transform: rotate(45deg)}
+.close-button::after {transform: rotate(-45deg)}
