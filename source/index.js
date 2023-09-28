@@ -1,6 +1,7 @@
 const searchInput = document.querySelector('input');
 const searchList = document.querySelector('.search-form__list');
 const resultList = document.querySelector('.result-form__list');
+// const closeBtn = document.querySelector('.close-button');
 
 async function getRepository(inputValue) {
     const response = await fetch(`https://api.github.com/search/repositories?q=${inputValue}`);
@@ -47,34 +48,47 @@ function createResponseList(data) {
 function createChoisenList(data) {
     const { name, owner, stars } = data;
     let counterLi = resultList.children.length
-    if(counterLi < 3) {
+    
+    if(counterLi < 3-1) {
+        console.log(counterLi);
         const listItem = document.createElement('li');
         listItem.className = `result-form__list-item`;
         listItem.innerHTML = `<p>Name: ${name}</p>
         <p>Owner: ${owner}</p>
         <p>Stars: ${stars}</p>`;
+        resultList.appendChild(listItem);
         const closeBtn = document.createElement('input');
         closeBtn.className = `close-button`;
-        closeBtn.value = `CLOSE`;
+        // closeBtn.value = `X`;
         closeBtn.type = `button`;
-        resultList.appendChild(listItem);
-        resultList.parentNode.appendChild(closeBtn);
-        console.log(resultList.parentNode);
+        listItem.appendChild(closeBtn);
+        // closeBtn.addEventListener("click", function (event) {
+        //     console.log(event);
+        // });
+        // console.log(resultList.parentNode);
     } else {
         const listItem = document.createElement('li');
         listItem.className = `result-form__list-item`;
         listItem.innerHTML = `<p>Name: ${name}</p>
             <p>Owner: ${owner}</p>
             <p>Stars: ${stars}</p>`;
-        resultList.appendChild(listItem);
-        resultList.removeChild(resultList.childNodes[0])
+            resultList.appendChild(listItem);
+            resultList.removeChild(resultList.childNodes[0])
+            // const closeBtn = document.createElement('input');
+            // closeBtn.className = `close-button`;
+            // closeBtn.value = `CLOSE`;
+            // closeBtn.type = `button`;
+            // resultList.parentNode.appendChild(closeBtn);       
+            // closeBtn.addEventListener("click", function (event) {
+            //     console.log(event);
+            // });
     }
 }
-searchInput.addEventListener("keyup", debounce(handleTapFunction, 1000));
+searchInput.addEventListener("keyup", debounce(handleTapFunction, 200));
 searchList.addEventListener("click", function (event) {
+    searchInput.value = "";
     const selectedElementData = event.target.dataset;
     if (event.target.tagName !== "LI") return;
     clearSearchList();
     createChoisenList(selectedElementData);
-    searchInput.value = "";
 });

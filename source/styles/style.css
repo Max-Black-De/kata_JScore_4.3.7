@@ -56,6 +56,7 @@ body {
     padding-top: 45px;
 }
 .result-form__list > li {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,14 +71,23 @@ body {
     font-style: normal;
     line-height: normal;
 }
-.results-list-wrapper {
-    display: flex;
-    justify-content: space-between;
-}
 .close-button {
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    right: 33px;
     cursor: pointer;
-    /* border: none; */
+    border: none;
     outline: none;
-    background: #E27BEB;
-    margin-left: -55px;
+    background: none;
 }
+.result-form__list > li::before, .result-form__list > li::after  {
+    content: "";
+    position: absolute;
+    right: 27px;
+    width: 55px;
+    height: 4px;
+    background: #FF0000;
+}
+.result-form__list > li::before {transform: rotate(45deg)}
+.result-form__list > li::after {transform: rotate(-45deg)}
